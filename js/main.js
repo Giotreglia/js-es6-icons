@@ -139,16 +139,58 @@ const icons = [
 // Elementi del DOM
 
 const iconsContainerDom = document.getElementById('icons-container');
+const filterDom = document.getElementById('filter');
 
 // Genero card con icone
 
-icons.forEach(element => {
-    const {name, prefix, color} = element;
-    iconsContainerDom.innerHTML += `<div class="card">
-                                        <i class="fa-solid ${prefix}${name}" style="color:${color}"></i>
-                                        <span>${name}</span>
-                                    </div>`;
-});
+generaCards(icons);
+
+// Filtro dal select
+
+filterDom.addEventListener('change',
+    function() {
+        let iconsFiltered;
+
+        if (filterDom.value == 'animal') {
+            filtra('animal', iconsFiltered);
+
+        } else if (filterDom.value == 'vegetable') {
+
+            filtra('vegetable', iconsFiltered);
+
+        } else if (filterDom.value == 'user') {
+
+            filtra('user', iconsFiltered);
+
+        } else {
+            iconsContainerDom.innerHTML = "";
+            iconsFiltered = icons.filter(element => (element.type) ? true:false)
+            generaCards(iconsFiltered);
+        }
+    })
+
+// FUNZIONI
+
+// Funzione per generare cards da un array
+function generaCards(array) {
+    array.forEach(element => {
+        const {name, prefix, color} = element;
+        iconsContainerDom.innerHTML += `<div class="card">
+                                            <i class="fa-solid ${prefix}${name}" style="color:${color}"></i>
+                                            <span>${name}</span>
+                                        </div>`;
+        
+    });
+    
+}
+
+// Funzione per filtrare le card dal valore "type"
+function filtra(value, array) {
+    iconsContainerDom.innerHTML = "";
+    array = icons.filter(element => (element.type == value) ? true:false)
+    generaCards(array);
+    
+}
 
 
 
