@@ -149,6 +149,29 @@ let newIcons = icons.map(element => {
 const iconsContainerDom = document.getElementById('icons-container');
 const filterDom = document.getElementById('filter');
 
+// Bonus 2 inserisco dinamicamente le options della select
+
+filterDom.innerHTML += `<option value="all">all</option>`;
+let typeList = [];
+
+newIcons.forEach(element => {
+	const {type} = element;
+
+	if (!typeList.includes(type)) {
+		typeList.push(type);
+	}
+});
+
+let type;
+
+for (let i = 0; i < typeList.length; i++) {
+	type = typeList[i];
+	filterDom.innerHTML += `<option value=${type}>${type}</option>`;
+	
+}
+
+
+
 // Genero card con icone
 
 generaCards(newIcons);
@@ -156,27 +179,27 @@ generaCards(newIcons);
 // Filtro dal select
 
 filterDom.addEventListener('change',
-    function() {
-        let iconsFiltered;
+function() {
+	let iconsFiltered;
 
-        if (filterDom.value == 'animal') {
-            
-            filtra('animal', iconsFiltered);
+	if (filterDom.value == 'animal') {
+		
+		filtra('animal', iconsFiltered);
 
-        } else if (filterDom.value == 'vegetable') {
+	} else if (filterDom.value == 'vegetable') {
 
-            filtra('vegetable', iconsFiltered);
+		filtra('vegetable', iconsFiltered);
 
-        } else if (filterDom.value == 'user') {
+	} else if (filterDom.value == 'user') {
 
-            filtra('user', iconsFiltered);
+		filtra('user', iconsFiltered);
 
-        } else {
-            iconsContainerDom.innerHTML = "";
-            iconsFiltered = icons.filter(element => (element.type) ? true:false)
-            generaCards(iconsFiltered);
-        }
-    })
+	} else {
+		iconsContainerDom.innerHTML = "";
+		iconsFiltered = icons.filter(element => (element.type) ? true:false)
+		generaCards(iconsFiltered);
+	}
+}); 
 
 
 
