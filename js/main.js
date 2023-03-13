@@ -146,7 +146,7 @@ icons.forEach(element => {
     const {name, prefix, color} = element;
     iconsContainerDom.innerHTML += `<div class="card">
                                         <i class="fa-solid ${prefix}${name}" style="color:${color}"></i>
-                                        <span>CAT</span>
+                                        <span>${name}</span>
                                     </div>`;
 });
 
