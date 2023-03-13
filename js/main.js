@@ -153,23 +153,17 @@ filterDom.addEventListener('change',
     function() {
         let iconsFiltered;
 
-        if (filterDom.value == 'animal') {
+        if (filterDom.value == 'all') {
             
-            filtra('animal', iconsFiltered);
-
-        } else if (filterDom.value == 'vegetable') {
-
-            filtra('vegetable', iconsFiltered);
-
-        } else if (filterDom.value == 'user') {
-
-            filtra('user', iconsFiltered);
-
-        } else {
             iconsContainerDom.innerHTML = "";
             iconsFiltered = icons.filter(element => (element.type) ? true:false)
             generaCards(iconsFiltered);
-        }
+
+        } else {
+
+            filtra(filterDom.value, iconsFiltered);
+
+        } 
     })
 
 

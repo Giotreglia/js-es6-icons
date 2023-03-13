@@ -123,14 +123,14 @@ let icons = [
 	{
 		name: 'user-ninja',
 		prefix: 'fa-',
-		type: 'user',
+		type: 'game',
 		family: 'fas',
 		color: 'blue'
 	},
 	{
 		name: 'user-secret',
 		prefix: 'fa-',
-		type: 'user',
+		type: 'game',
 		family: 'fas',
 		color: 'blue'
 	}
@@ -167,10 +167,9 @@ let type;
 for (let i = 0; i < typeList.length; i++) {
 	type = typeList[i];
 	filterDom.innerHTML += `<option value=${type}>${type}</option>`;
-	
 }
 
-
+console.log(typeList);
 
 // Genero card con icone
 
@@ -182,23 +181,17 @@ filterDom.addEventListener('change',
 function() {
 	let iconsFiltered;
 
-	if (filterDom.value == 'animal') {
-		
-		filtra('animal', iconsFiltered);
-
-	} else if (filterDom.value == 'vegetable') {
-
-		filtra('vegetable', iconsFiltered);
-
-	} else if (filterDom.value == 'user') {
-
-		filtra('user', iconsFiltered);
-
-	} else {
+	if (filterDom.value == 'all') {
+            
 		iconsContainerDom.innerHTML = "";
 		iconsFiltered = icons.filter(element => (element.type) ? true:false)
 		generaCards(iconsFiltered);
-	}
+
+	} else {
+
+		filtra(filterDom.value, iconsFiltered);
+
+	} 
 }); 
 
 
