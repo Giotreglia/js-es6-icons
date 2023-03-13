@@ -169,8 +169,6 @@ for (let i = 0; i < typeList.length; i++) {
 	filterDom.innerHTML += `<option value=${type}>${type}</option>`;
 }
 
-console.log(typeList);
-
 // Genero card con icone
 
 generaCards(newIcons);
@@ -179,6 +177,7 @@ generaCards(newIcons);
 
 filterDom.addEventListener('change',
 function() {
+
 	let iconsFiltered;
 
 	if (filterDom.value == 'all') {
@@ -190,7 +189,6 @@ function() {
 	} else {
 
 		filtra(filterDom.value, iconsFiltered);
-
 	} 
 }); 
 
@@ -219,6 +217,7 @@ function generaCards(array) {
 
 // Funzione per filtrare le card dal valore "type"
 function filtra(value, array) {
+	
     iconsContainerDom.innerHTML = "";
     array = icons.filter(element => (element.type == value) ? true:false)
     generaCards(array);
