@@ -21,7 +21,7 @@
 
 // Array icone
 
-const icons = [
+let icons = [
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -136,7 +136,13 @@ const icons = [
 	}
 ];
 
+// Bonus 1 aggiungo color random
+const {color} = icons;
 
+let newIcons = icons.map(element => {
+	element.color = randomColor();
+	return element;
+})
 
 // Elementi del DOM
 
@@ -145,7 +151,7 @@ const filterDom = document.getElementById('filter');
 
 // Genero card con icone
 
-generaCards(icons);
+generaCards(newIcons);
 
 // Filtro dal select
 
@@ -201,6 +207,12 @@ function filtra(value, array) {
     array = icons.filter(element => (element.type == value) ? true:false)
     generaCards(array);
     
+}
+
+// Funzione per colore random
+function randomColor() {
+	let randomColor = Math.floor(Math.random()*16777215).toString(16);
+	return `#${randomColor}`;
 }
 
 
